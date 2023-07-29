@@ -8,12 +8,13 @@ module stocks.producer.services {
     requires spring.boot;
     requires java.logging;
     requires spring.web;
+    requires spring.messaging;
     opens com.saji.kafka to spring.core, spring.context;
     opens com.saji.kafka.service to spring.core, spring.context;
     opens com.saji.kafka.config to spring.core, spring.context;
     opens com.saji.kafka.controller to spring.core, spring.context;
     exports com.saji.kafka to spring.beans;
     exports com.saji.kafka.config to spring.beans;
-    exports com.saji.kafka.service to spring.beans;
-    exports com.saji.kafka.controller to spring.beans;
+    exports com.saji.kafka.service to spring.beans, spring.messaging;
+    exports com.saji.kafka.controller to spring.beans, spring.web;
 }

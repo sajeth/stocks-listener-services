@@ -7,13 +7,14 @@ import org.springframework.kafka.config.TopicBuilder;
 
 @Configuration
 public class KTopicConfig {
-//    @Bean
-//    public NewTopic topic1() {
-//        return TopicBuilder.name("reflectoring-1").build();
-//    }
+    @Bean
+    public NewTopic topic1() {
+        return TopicBuilder.name("task").build();
+    }
 
     @Bean
     public NewTopic topic2() {
-        return TopicBuilder.name("reflectoring-2").build();
+        return TopicBuilder.name("response").build();
     }
+
 }

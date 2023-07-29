@@ -1,21 +1,21 @@
 package com.saji.kafka.service;
 
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.logging.Logger;
 
-@Component
+@Service
 public
-class KListener {
+class Consumer {
 
 
-    Logger log = Logger.getLogger(KListener.class.getName());
+    Logger log = Logger.getLogger(Consumer.class.getName());
 
     @KafkaListener(
-            topics = "reflectoring-2",
+            topics = "task",
             groupId = "myGroup")
-    public void commonListenerForMultipleTopics(String message) {
+    public void publishTask(String message) {
         log.info("MultipleTopicListener - " + message);
     }
 }

@@ -1,4 +1,18 @@
-
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: openapi, swagger-ui
+#  server:
+#    port: 9090
+#springdoc:
+#  packagesToScan: com.saji.kafka.controller
+#  api-docs:
+#    enabled: true
+#  use-management-port: false
+#  show-actuator: true
+#  swagger-ui:
+#    path: /swagger-ui.html
 spring:
   kafka:
     bootstrap-servers: "localhost:29092"
@@ -6,3 +20,7 @@ spring:
       group-id: "myGroup"
 server:
   port: 10080
+  servlet:
+    context-path: /v3
+
+

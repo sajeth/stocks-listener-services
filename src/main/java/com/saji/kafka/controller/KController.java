@@ -1,27 +1,30 @@
 package com.saji.kafka.controller;
 
-import com.saji.kafka.service.KListener;
-import com.saji.kafka.service.KSender;
+import com.saji.kafka.service.Producer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/kafka")
 public class KController {
 
     @Autowired
-    KSender sender;
+    Producer sender;
 
 
     // Implementing a GET method
-    @GetMapping("/publish/{message}")
-    public String publish_message(
-            @PathVariable("message") String message) {
-        sender.sendMessage(message);
-        return "Message Published on Kafka !";
+    @PostMapping("/kafka/publish")
+    public HttpStatus publishMessage(
+            @RequestParam("message") String message) {
+        try {
+            sender.sendMessage(message);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return HttpStatus.EXPECTATION_FAILED;
+        }
+        return HttpStatus.ACCEPTED;
     }
 
 }
